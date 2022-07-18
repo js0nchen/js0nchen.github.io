@@ -3,23 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>验证页面</title>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-	type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1"  charset="utf-8">
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#pay")
-								.click(
-										function() {
-											let url = "alipays://platformapi/startapp?appId=2021002154625058&page=pages/index/index&query=tradeNo=BHT21101700004641634";
-											alert(url)
-											window.location.href = url;
-										});
-
-					});
 	function IdentityCodeValid() {
 		let code = $("#num").val()
+		if (!code) {
+			$(".result").html(
+					"<div class='alert alert-danger'>卡号不能为空</div>");
+			return;
+		}
 		var city = {
 			11 : "北京",
 			12 : "天津",
@@ -61,11 +58,11 @@
 		if (!code
 				|| !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i
 						.test(code)) {
-			$(".result").html("身份证号格式错误");
+			$(".result").html("<div class='alert alert-danger'>身份证号:格式错误</div>");
 			return;
 		}
 		if (!city[code.substr(0, 2)]) {
-			$(".result").html("地址编码错误");
+			$(".result").html("<div class='alert alert-danger'>身份证号:地址编码错误</div>");
 			return;
 		}
 		if (code.length == 18) {
@@ -74,7 +71,7 @@
 			var d = new Date(sBirthday.replace(/-/g, "/"))
 			if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d
 					.getDate())) {
-				$(".result").html("非法生日");
+				$(".result").html("<div class='alert alert-danger'>身份证号:非法生日</div>");
 				return;
 			}
 		}
@@ -96,14 +93,19 @@
 			}
 			var last = parity[sum % 11];
 			if (parity[sum % 11] != code[17]) {
-				$(".result").html("校验位错误,正确校验位[" + last + "]");
+				$(".result").html("<div class='alert alert-danger'>身份证号:校验位错误,正确校验位[" + last + "]</div>");
 				return;
 			}
 		}
-		$(".result").html("规则验证通过");
+		$(".result").html("<div class='alert alert-success'>身份证号:规则验证通过</div>");
 	}
 	function luhnCheck() {
 		let bankno = $("#num").val()
+		if (!bankno) {
+			$(".result").html(
+					"<div class='alert alert-danger'>卡号不能为空</div>");
+			return;
+		}
 		var lastNum = bankno.substr(bankno.length - 1, 1);//取出最后一位（与luhn进行比较）
 
 		var first15Num = bankno.substr(0, bankno.length - 1);//前15或18位
@@ -159,20 +161,38 @@
 		var luhn = 10 - k;
 
 		if (lastNum == luhn) {
-			$(".result").html("银行卡号luhn验证通过");
+			$(".result").html("<div class='alert alert-success'>银行卡号luhn验证通过</div>");
 			return true;
 		} else {
-			$(".result").html("银行卡号不符合luhn校验");
+			$(".result").html("<div class='alert alert-danger'>银行卡号不符合luhn校验</div>");
 			return false;
 		}
 	}
 </script>
+<style>
+.con {
+	width: 400px;
+	height: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+
+h1 {
+	text-align: center;
+}
+</style>
 </head>
 <body>
-	<div>
-		输入号码:<input type="text" id="num" name="num" value="" size="20">
-		<button onclick="IdentityCodeValid()">身份证验证</button>
-		<button onclick="luhnCheck()">银行卡验证</button>
+	<div class="con">
+		<h2>身份证/银行卡规则验证</h2>
+		<div class="alert alert-warning">此验证只是根据已知规则验证卡号，并不代表卡号真实存在，只做参考</div>
+		<div class="form-group">
+		<label class="sr-only" for="name">输入号码:</label>
+		<input class="form-control" type="text" id="num" name="num" value="">
+		</div>
+		<button class="btn btn-primary" onclick="IdentityCodeValid()">身份证验证</button>
+		<button class="btn btn-info" onclick="luhnCheck()">银行卡验证</button>
 		<div class="result" style="color: #F00"></div>
 	</div>
 </body>
