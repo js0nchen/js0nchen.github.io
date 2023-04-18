@@ -1,0 +1,2309 @@
+{
+	"sendBindCardEmail": {
+		"action": "sendBindCardEmail.action",
+		"title": "重发邮件",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"queryCustomerInfo": {
+		"action": "queryCustomerInfo.action",
+		"title": "客户信息查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "customerType",
+				"title": "客户类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "个人用户",
+						"value": "PERSON",
+						"idSelected": "selected"
+					},
+					{
+						"title": "企业用户",
+						"value": "MERCHANT",
+						"idSelected": ""
+					},
+					{
+						"title": "个体用户",
+						"value": "EMPLOYER",
+						"idSelected": ""
+					}
+				]
+			}
+		]
+	},
+	"getBalanceNew": {
+		"action": "getBalanceNew.action",
+		"title": "账户余额查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "accountType",
+				"title": "账户类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "余额户",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					}
+				]
+			}
+		]
+	},
+	"findBindBankCards": {
+		"action": "findBindBankCards.action",
+		"title": "获取已绑定卡信息",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "contractNo",
+				"title": "客户号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "tradeType",
+				"title": "查询类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "全部",
+						"value": "BASE_LIST",
+						"idSelected": "selected"
+					}
+				]
+			}
+		]
+	},
+	"orderPageQuery": {
+		"action": "orderPageQuery.action",
+		"title": "账单明细分页查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "tradeType",
+				"title": "交易类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "全部",
+						"value": "",
+						"idSelected": "selected"
+					}
+				]
+			},
+			{
+				"name": "tradeId",
+				"title": "商户交易订单号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "当账单查询为退款订单时，可使用商户退款请求订单号进行查询",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "startDate",
+				"title": "开始时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "yyyyMMddHHmmss格式",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "endDate",
+				"title": "结束时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "yyyyMMddHHmmss格式",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "pageSize",
+				"title": "每页数据行数",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "10条",
+						"value": "10",
+						"idSelected": "selected"
+					},
+					{
+						"title": "20条",
+						"value": "20",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "currentPage",
+				"title": "当前页数",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "第一页",
+						"value": "1",
+						"idSelected": "selected"
+					},
+					{
+						"title": "第二页",
+						"value": "2",
+						"idSelected": ""
+					}
+					,
+					{
+						"title": "第三页",
+						"value": "3",
+						"idSelected": ""
+					}
+				]
+			}
+		]
+	},
+	"getBalDetail": {
+		"action": "getBalDetail.action",
+		"title": "收支明细分页查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "detailAmountType",
+				"title": "收支类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "全部",
+						"value": "",
+						"idSelected": "selected"
+					},
+					{
+						"title": "收入",
+						"value": "INCOME",
+						"idSelected": ""
+					},
+					{
+						"title": "支出",
+						"value": "EXPEND",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "startDate",
+				"title": "开始时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "yyyyMMddHHmmss格式",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "endDate",
+				"title": "结束时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "yyyyMMddHHmmss格式",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "pageSize",
+				"title": "每页数据行数",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "10条",
+						"value": "10",
+						"idSelected": "selected"
+					},
+					{
+						"title": "20条",
+						"value": "20",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "currentPage",
+				"title": "当前页数",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "第一页",
+						"value": "1",
+						"idSelected": "selected"
+					},
+					{
+						"title": "第二页",
+						"value": "2",
+						"idSelected": ""
+					}
+					,
+					{
+						"title": "第三页",
+						"value": "3",
+						"idSelected": ""
+					}
+				]
+			}
+		]
+	},
+	"queryOrder": {
+		"action": "queryOrder.action",
+		"title": "交易订单信息查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "tradeId",
+				"title": "商户订单号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "查支付交易传商户订单号；查退款退款交易传退款订单号",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"confirmOrderQuery": {
+		"action": "confirmOrderQuery.action",
+		"title": "确认分账订单查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "tradeId",
+				"title": "商户订单号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "确认分账交易订单号",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"verifyFileDownload": {
+		"action": "verifyFileDownload.action",
+		"title": "对账文件下载申请",
+		"desc": "",
+		"params": [
+			{
+				"name": "verifyType",
+				"title": "对账类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "交易信息对账",
+						"value": "API_TRADE_INFO_VERIFY",
+						"idSelected": "selected"
+					},
+					{
+						"title": "账户信息对账",
+						"value": "API_ACCOUNT_INFO_VERIFY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "对账类型为账户信息对账时必填",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "applyStartTime",
+				"title": "对账开始时间",
+				"type": "TEXT",
+				"defaultValue": "2023-01-01 00:00:00",
+				"desc": "格式：yyyy-MM-dd HH:mm:ss",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "applyEndTime",
+				"title": "对账结束时间",
+				"type": "TEXT",
+				"defaultValue": "2023-01-02 00:00:00",
+				"desc": "格式：yyyy-MM-dd HH:mm:ss",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=verifyFileDownload",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"transSummaryQuery": {
+		"action": "transSummaryQuery.action",
+		"title": "交易汇总信息查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "tradeType",
+				"title": "交易类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实时分账",
+						"value": "PAYMENT_SPLIT_API",
+						"idSelected": "selected"
+					},
+					{
+						"title": "担保分账",
+						"value": "ASSURE_RECHARGE",
+						"idSelected": ""
+					},
+					{
+						"title": "营销分账",
+						"value": "ASSURE_PORTFOLIO_PAY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "startTime",
+				"title": "开始时间",
+				"type": "TEXT",
+				"defaultValue": "20230101000000",
+				"desc": "格式：yyyyMMddHHmmss",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "endTime",
+				"title": "结束时间",
+				"type": "TEXT",
+				"defaultValue": "20230102000000",
+				"desc": "格式：yyyyMMddHHmmss",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"verifyFileQuery": {
+		"action": "verifyFileQuery.action",
+		"title": "对账文件同步下载",
+		"desc": "",
+		"params": [
+			{
+				"name": "verifyType",
+				"title": "对账类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "交易信息对账",
+						"value": "TRADE_INFO_VERIFY",
+						"idSelected": "selected"
+					},
+					{
+						"title": "账户分账对账",
+						"value": "SPLIT_DAILY_VERIFY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "fileGeneraCycle",
+				"title": "对账周期",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "按日生成",
+						"value": "DAY",
+						"idSelected": "selected"
+					},
+					{
+						"title": "按月生成",
+						"value": "MONTH",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "loginNoList",
+				"title": "登录号列表",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "对账类型为账户分账对账时必填，每个登录号用,隔开",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "fileDate",
+				"title": "文件日期",
+				"type": "TEXT",
+				"defaultValue": "2023-01-01",
+				"desc": "对账周期选择按日生成格式：yyyy-MM-dd，对账周期选择按月生成格式yyyy-MM",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"modifyLoginNo": {
+		"action": "modifyLoginNo.action",
+		"title": "客户登录号变更",
+		"desc": "",
+		"params": [
+			{
+				"name": "origLoginNo",
+				"title": "原登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "loginNo",
+				"title": "新登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"downloadVoucher": {
+		"action": "downloadVoucher.action",
+		"title": "交易凭证下载",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "outOrderNo",
+				"title": "商户订单号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			}
+		]
+	},
+	"recharge": {
+		"action": "recharge.action",
+		"title": "个人充值-API",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "充值金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=recharge",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"withdraw": {
+		"action": "withdraw.action",
+		"title": "个人提现-API",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "提现金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=withdraw",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"merchantTransferRecharge": {
+		"action": "merchantTransferRecharge.action",
+		"title": "企业打款充值",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "充值金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "绑定卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=merchantTransferRecharge",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"gatewayPayment": {
+		"action": "gatewayPayment.action",
+		"title": "企业网银充值",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "orderMoney",
+				"title": "充值金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "pageUrl",
+				"title": "页面返回地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=gatewayPayment",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "returnUrl",
+				"title": "交易通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=gatewayPayment",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"merchantWithdraw": {
+		"action": "merchantWithdraw.action",
+		"title": "企业提现-API",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "提现金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=merchantWithdraw",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"entrustWithdraw": {
+		"action": "entrustWithdraw.action",
+		"title": "委托提现",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "提现金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=entrustWithdraw",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"findSignEntrustResult": {
+		"action": "findSignEntrustResult.action",
+		"title": "委托授权查询",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementType",
+				"title": "协议类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "委托提现协议",
+						"value": "W_ENTRUST",
+						"idSelected": "selected"
+					},
+					{
+						"title": "委托扣款协议",
+						"value": "P_ENTRUST",
+						"idSelected": ""
+					}
+				]
+			}
+		]
+	},
+	"signDeposit": {
+		"action": "signDeposit.action",
+		"title": "保证金开通",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "callType",
+				"title": "唤起类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "保证金签约类型",
+						"value": "SIGN_GUARANTEE_FEE",
+						"idSelected": "selected"
+					}
+				]
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"guarantee_recharge": {
+		"action": "guarantee_recharge.action",
+		"title": "保证金充值",
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "chargeType",
+				"title": "充值类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "个人协议充值",
+						"value": "PROTOCOL",
+						"idSelected": "selected"
+					},
+					{
+						"title": "企业转账充值",
+						"value": "BANK_TRANS",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "amount",
+				"title": "充值金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "签约协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=guarantee_recharge",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"guarantee_deduct": {
+		"action": "guarantee_deduct.action",
+		"title": "保证金划扣",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "deductReason",
+				"title": "扣款原因",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"guarantee_extract": {
+		"action": "guarantee_extract.action",
+		"title": "保证金提取",
+		"desc": "",
+		"hasSplit": false,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分, 为空时默认提取全部余额",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"paymentSplitApi": {
+		"action": "paymentSplitApi.action",
+		"title": "实时分账-余额和卡支付API",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "余额支付",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					},
+					{
+						"title": "银行卡支付",
+						"value": "CARD",
+						"idSelected": ""
+					},
+					{
+						"title": "B端余额支付",
+						"value": "B_BALANCE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "付款方式为银行卡支付必传",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "pwdPayExpTime",
+				"title": "支付有效时长",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：秒",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=paymentSplitApi",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+			
+		]
+	},
+	"payment": {
+		"action": "payment.action",
+		"title": "聚合支付API",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "callType",
+				"title": "唤起类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实时分账",
+						"value": "PAYMENT_SPLIT",
+						"idSelected": "selected"
+					},
+					{
+						"title": "担保分账",
+						"value": "ASSURE_PAYMENT",
+						"idSelected": ""
+					},
+					{
+						"title": "营销分账",
+						"value": "ASSURE_PORTFOLIO_PAY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "chanalId",
+				"title": "支付用户id",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "1.微信支付(公众号、小程序)需填公众号授权获取微信用户openid；2.支付宝支付(生活号、小程序)需填生活号授权获取支付宝用户userid",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "simId",
+				"title": "商户识别码",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "宝付报备完成后提供",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "appId",
+				"title": "应用id",
+				"type": "TEXT",
+				"defaultValue": "wx0000000000",
+				"desc": "微信需报备，支付宝可直接使用",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "forbidCredit",
+				"title": "禁止贷记卡支付",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "不禁止",
+						"value": "0",
+						"idSelected": "selected"
+					},
+					{
+						"title": "禁止",
+						"value": "1",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "超市里的溜溜球",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "微信公众号支付",
+						"value": "WECHAT_JSGZH",
+						"idSelected": "selected"
+					},
+					{
+						"title": "微信小程序支付",
+						"value": "WECHAT_JSXCX",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝生活号支付",
+						"value": "ALIPAY_ALSHH",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝小程序支付",
+						"value": "ALIPAY_ALXCX",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝主扫",
+						"value": "ALIPAY_NATIVE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "expireDate",
+				"title": "订单支付有效时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMddHHmmss",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "feeMemberId",
+				"title": "手续费承担方",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "1.承担方必须为交易参与方,传空或不传时默认从平台扣除2.分账金额必须>=手续费金额3.子商户传客户号,平台商户传商户号.如果是平台商户号,手续费从基本户出",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=payment",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "remark",
+				"title": "备注",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"cloudB2cAssureSplit": {
+		"action": "cloudB2cAssureSplit.action",
+		"title": "网银支付",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "payId",
+				"title": "选择银行",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "招商银行-个人",
+						"value": "3001",
+						"idSelected": "selected"
+					},
+					{
+						"title": "招商银行-企业",
+						"value": "6001",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "超市里的溜溜球",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "expireDate",
+				"title": "订单支付有效时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMddHHmmss",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "feeMemberId",
+				"title": "手续费承担方",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "1.承担方必须为交易参与方,传空或不传时默认从平台扣除2.分账金额必须>=手续费金额3.子商户传客户号,平台商户传商户号.如果是平台商户号,手续费从基本户出",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=cloudB2cAssureSplit",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"entrustPayment": {
+		"action": "entrustPayment.action",
+		"title": "委托扣款",
+		"hasSplit": true,
+		"desc": "",
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "付款方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "个人账户余额扣款",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					},
+					{
+						"title": "企业账户余额扣款",
+						"value": "B_BALANCE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "扣款业务名称",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=entrustPayment",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"cloudB2cAssureRecharge": {
+		"action": "cloudB2cAssureRecharge.action",
+		"title": "担保分账-网银支付",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "payId",
+				"title": "选择银行",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "招商银行-个人",
+						"value": "3001",
+						"idSelected": "selected"
+					},
+					{
+						"title": "招商银行-企业",
+						"value": "6001",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "超市里的溜溜球",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=cloudB2cAssureRecharge",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"assurePaymentSplit": {
+		"action": "assurePaymentSplit.action",
+		"title": "担保分账-余额和卡支付API",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "余额支付",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					},
+					{
+						"title": "银行卡支付",
+						"value": "CARD",
+						"idSelected": ""
+					},
+					{
+						"title": "B端余额支付",
+						"value": "B_BALANCE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "付款方式为银行卡支付必传",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "pwdPayExpTime",
+				"title": "支付有效时长",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：秒",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=assurePaymentSplit",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+			
+		]
+	},
+	"updateSplitInfo": {
+		"action": "updateSplitInfo.action",
+		"title": "修改分账信息",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "余额支付",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					},
+					{
+						"title": "银行卡支付",
+						"value": "CARD",
+						"idSelected": ""
+					},
+					{
+						"title": "B端余额支付",
+						"value": "B_BALANCE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "付款方式为银行卡支付必传",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "pwdPayExpTime",
+				"title": "支付有效时长",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：秒",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=paymentSplitApi",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+			
+		]
+	},
+	"b2c2bPortfolioPayment": {
+		"action": "b2c2bPortfolioPayment.action",
+		"title": "营销分账-网银支付",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "payId",
+				"title": "选择银行",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "招商银行-个人",
+						"value": "3001",
+						"idSelected": "selected"
+					},
+					{
+						"title": "招商银行-企业",
+						"value": "6001",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "isDeductMarketAmount",
+				"title": "营销金额是否实扣",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实扣",
+						"value": "1",
+						"idSelected": "selected"
+					},
+					{
+						"title": "后扣",
+						"value": "0",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "超市里的溜溜球",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "marketAmount",
+				"title": "营销金额",
+				"type": "TEXT",
+				"defaultValue": "0",
+				"desc": "单位：分",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "remark",
+				"title": "营销说明",
+				"type": "TEXT",
+				"defaultValue": "优惠券抵扣",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=b2c2bPortfolioPayment",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	},
+	"portfolioPayment": {
+		"action": "portfolioPayment.action",
+		"title": "营销分账-余额和卡支付API",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "余额支付",
+						"value": "BALANCE",
+						"idSelected": "selected"
+					},
+					{
+						"title": "银行卡支付",
+						"value": "CARD",
+						"idSelected": ""
+					},
+					{
+						"title": "B端余额支付",
+						"value": "B_BALANCE",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "付款方式为银行卡支付必传",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "pwdPayExpTime",
+				"title": "支付有效时长",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "单位：秒",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "marketAmount",
+				"title": "营销金额",
+				"type": "TEXT",
+				"defaultValue": "0",
+				"desc": "单位：分",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "remark",
+				"title": "营销说明",
+				"type": "TEXT",
+				"defaultValue": "优惠券抵扣",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=portfolioPayment",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+			
+		]
+	},
+	"transferSplitPay": {
+		"action": "transferSplitPay.action",
+		"title": "营销分账-转账支付",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "callType",
+				"title": "唤起类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "营销-转账支付",
+						"value": "TRANSFER_ASSURE_PORTFOLIO_PAYMENT",
+						"idSelected": "selected"
+					}
+				]
+			},
+			{
+				"name": "isDeductMarketAmount",
+				"title": "营销金额是否实扣",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实扣",
+						"value": "1",
+						"idSelected": "selected"
+					},
+					{
+						"title": "后扣",
+						"value": "0",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "商品1",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "agreementNo",
+				"title": "银行卡协议号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "20230101",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "marketAmount",
+				"title": "营销金额",
+				"type": "TEXT",
+				"defaultValue": "0",
+				"desc": "单位：分",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "remark",
+				"title": "营销说明",
+				"type": "TEXT",
+				"defaultValue": "优惠券抵扣",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=transferSplitPay",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+			
+		]
+	},
+	"unifyPay": {
+		"action": "unifyPay.action",
+		"title": "匿名支付-聚合支付API",
+		"desc": "",
+		"hasSplit": true,
+		"params": [
+			{
+				"name": "loginNo",
+				"title": "登录号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "「匿名支付」时传空字符串，「实名支付」时传开户登录号",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "orderType",
+				"title": "订单类型",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实时分账",
+						"value": "SPLIT_PAY",
+						"idSelected": "selected"
+					},
+					{
+						"title": "担保分账",
+						"value": "ASSURE_PAY",
+						"idSelected": ""
+					},
+					{
+						"title": "营销分账",
+						"value": "MARKETING_PAY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "chanalId",
+				"title": "支付用户id",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "1.微信支付(公众号、小程序)需填公众号授权获取微信用户openid；2.支付宝支付(生活号、小程序)需填生活号授权获取支付宝用户userid",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "simId",
+				"title": "商户识别码",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "宝付报备完成后提供",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "appId",
+				"title": "应用id",
+				"type": "TEXT",
+				"defaultValue": "wx0000000000",
+				"desc": "微信需报备，支付宝可直接使用",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "isDeductMarketAmount",
+				"title": "营销金额扣除方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "营销支付时必填",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "实扣",
+						"value": "1",
+						"idSelected": "selected"
+					},
+					{
+						"title": "后扣",
+						"value": "0",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "forbidCredit",
+				"title": "禁止贷记卡支付",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "不禁止",
+						"value": "0",
+						"idSelected": "selected"
+					},
+					{
+						"title": "禁止",
+						"value": "1",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "goodsName",
+				"title": "商品名称",
+				"type": "TEXT",
+				"defaultValue": "超市里的溜溜球",
+				"desc": "",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "amount",
+				"title": "订单金额",
+				"type": "TEXT",
+				"defaultValue": "1000",
+				"desc": "单位：分",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "marketAmount",
+				"title": "营销金额",
+				"type": "TEXT",
+				"defaultValue": "0",
+				"desc": "单位：分，营销分账时必填",
+				"isMust": "required",
+				"childs": []
+			},
+			{
+				"name": "paidType",
+				"title": "支付方式",
+				"type": "SELECT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": [
+					{
+						"title": "微信公众号支付",
+						"value": "WECHAT_JSGZH",
+						"idSelected": "selected"
+					},
+					{
+						"title": "微信小程序支付",
+						"value": "WECHAT_JSXCX",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝生活号支付",
+						"value": "ALIPAY_ALSHH",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝小程序支付",
+						"value": "ALIPAY_ALXCX",
+						"idSelected": ""
+					},
+					{
+						"title": "支付宝主扫",
+						"value": "ALIPAY_NATIVE",
+						"idSelected": ""
+					},
+					{
+						"title": "微信支付分",
+						"value": "WX_SCORE_PAY",
+						"idSelected": ""
+					}
+				]
+			},
+			{
+				"name": "payScoreOutOrderNo",
+				"title": "支付分订单号",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "微信支付分时必传，此值对应微信支付分商户预下单通知接口的outOrderNo",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "expireDate",
+				"title": "订单支付有效时间",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMddHHmmss",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "validDate",
+				"title": "订单担保有效周期",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "格式:yyyyMMdd",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "feeMemberId",
+				"title": "手续费承担方",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "1.承担方必须为交易参与方,传空或不传时默认从平台扣除2.分账金额必须>=手续费金额3.子商户传客户号,平台商户传商户号.如果是平台商户号,手续费从基本户出",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "notifyUrl",
+				"title": "通知地址",
+				"type": "TEXT",
+				"defaultValue": "http://10.0.60.55:8080/BF_BHT_JAVADEMO_V1/notifyUrl.action?ct=unifyPay",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			},
+			{
+				"name": "remark",
+				"title": "备注信息",
+				"type": "TEXT",
+				"defaultValue": "",
+				"desc": "",
+				"isMust": "",
+				"childs": []
+			}
+		]
+	}
+	
+}
