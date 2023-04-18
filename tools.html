@@ -10,7 +10,15 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 获取IP地址js -->
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<!-- 生成二维码js -->
+<script type="text/javascript"
+	src="//static.runoob.com/assets/qrcode/qrcode.min.js"></script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		$(".ip").html(returnCitySN['cip'] + returnCitySN['cname']);
+	});
 	function IdentityCodeValid() {
 		let code = $("#num").val()
 		if (!code) {
@@ -57,7 +65,7 @@
 
 		if (!code
 				|| !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i
-						.test(code)) {
+						.test(code.toUpperCase())) {
 			$(".result")
 					.html("<div class='alert alert-danger'>身份证号:格式错误</div>");
 			return;
@@ -138,7 +146,6 @@
 			jishu_child1.push(parseInt(arrJiShu2[h]) % 10);
 			jishu_child2.push(parseInt(arrJiShu2[h]) / 10);
 		}
-
 		var sumJiShu = 0; //奇数位*2 < 9 的数组之和
     var sumOuShu=0; //偶数位数组之和
     var sumJiShuChild1=0; //奇数位*2 >9 的分割之后的数组个位数之和
@@ -174,6 +181,23 @@
 			return false;
 		}
 	}
+
+	function makeQRCode() {
+		$("#qrcode").empty()
+		let qrCodeContent = $("#qrcode_text").val()
+		if (!qrCodeContent) {
+			alert("内容不能为空")
+		}
+		var qrcode = new QRCode("qrcode", {
+			text : qrCodeContent, // 二维码内容
+			width : 128,
+			height : 128,
+			colorDark : "#000000", // 码的颜色
+			colorLight : "#ffffff", // 码的背景色
+			correctLevel : QRCode.CorrectLevel.H
+		// 高度容错
+		});
+	}
 </script>
 <style>
 </style>
@@ -183,6 +207,9 @@
 		<div class="jumbotron">
 			<h2>使用说明</h2>
 			<p class="alert alert-warning">此验证只是根据已知规则验证卡号是否符合生成规则，并不代表卡号真实存在，只做参考</p>
+			<blockquote class="pull-right">
+				<small><b class="ip"></b></small>
+			</blockquote>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
@@ -196,15 +223,24 @@
 				<div class="result" style="color: #F00"></div>
 			</div>
 			<div class="col-sm-4">
-				<h3>寄语</h3>
-				<p>学的不仅是技术，更是梦想！</p>
-				<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+				<h3>二维码生成</h3>
+				<div class="form-group">
+					<input class="form-control" type="text" id="qrcode_text"
+						name="qrcode_text" placeholder="请输入内容" value="">
+				</div>
+				<button class="btn btn-primary" onclick="makeQRCode()">立即生成</button>
+				<div id="qrcode"></div>
 			</div>
 			<div class="col-sm-4">
-				<h3>寄语</h3>
+				<h3>梦想</h3>
 				<p>学的不仅是技术，更是梦想！</p>
 				<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
 			</div>
+		</div>
+		<div>
+			<form action="" method="post">
+				
+			</form>
 		</div>
 	</div>
 </body>
