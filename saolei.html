@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫雷游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .board {
+            display: inline-grid;
+            grid-template-columns: repeat(10, 30px);
+            grid-template-rows: repeat(10, 30px);
+            gap: 2px;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            border: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .cell.revealed {
+            background-color: #eee;
+        }
+        .cell.mine {
+            background-color: #f00;
+            color: #fff;
+        }
+        .cell.flagged {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <h1>扫雷游戏</h1>
+    <div class="board" id="board"></div>
+    <script>
+        const BOARD_SIZE = 10;
+        const MINE_COUNT = 10;
+        let board = [];
+        let mines = new Set();
+
+        function initBoard() {
+            const boardElement = document.getElementById('board');
+            boardElement.innerHTML = '';
+            board = [];
+            mines = new Set();
+
+            // 初始化棋盘
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                board[i] = [];
+                for (let j = 0; j < BOARD_SIZE; j++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.addEventListener('click', handleCellClick);
+                    cell.addEventListener('contextmenu', handleRightClick);
+                    boardElement.appendChild(cell);
+                    board[i][j] = { isMine: false, revealed: false, flagged: false, count: 0 };
+                }
+            }
+
+            // 随机布置地雷
+            while (mines.size < MINE_COUNT) {
+                const row = Math.floor(Math.random() * BOARD_SIZE);
+                const col = Math.floor(Math.random() * BOARD_SIZE);
+                if (!board[row][col].isMine) {
+                    board[row][col].isMine = true;
+                    mines.add(`${row}-${col}`);
+                }
+            }
+
+            // 计算每个格子周围的地雷数量
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                for (let j = 0; j < BOARD_SIZE; j++) {
+                    if (!board[i][j].isMine) {
+                        let count = 0;
+                        for (let x = -1; x <= 1; x++) {
+                            for (let y = -1; y <= 1; y++) {
+                                if (i + x >= 0 && i + x < BOARD_SIZE && j + y >= 0 && j + y < BOARD_SIZE && board[i + x][j + y].isMine) {
+                                    count++;
+                                }
+                            }
+                        }
+                        board[i][j].count = count;
+                    }
+                }
+            }
+        }
+
+        function handleCellClick(event) {
+            const cell = event.target;
+            const row = parseInt(cell.dataset.row);
+            const col = parseInt(cell.dataset.col);
+
+            if (board[row][col].flagged) return;
+
+            if (board[row][col].isMine) {
+                cell.classList.add('mine');
+                alert('游戏结束！你踩到了地雷！');
+                revealAllMines();
+                return;
+            }
+
+            revealCell(row, col);
+            checkWin();
+        }
+
+        function handleRightClick(event) {
+            event.preventDefault();
+            const cell = event.target;
+            const row = parseInt(cell.dataset.row);
+            const col = parseInt(cell.dataset.col);
+
+            if (!board[row][col].revealed) {
+                board[row][col].flagged = !board[row][col].flagged;
+                cell.classList.toggle('flagged', board[row][col].flagged);
+            }
+        }
+
+        function revealCell(row, col) {
+            if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE || board[row][col].revealed) return;
+
+            board[row][col].revealed = true;
+            const cell = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
+            cell.classList.add('revealed');
+            cell.textContent = board[row][col].count || '';
+
+            if (board[row][col].count === 0) {
+                for (let x = -1; x <= 1; x++) {
+                    for (let y = -1; y <= 1; y++) {
+                        revealCell(row + x, col + y);
+                    }
+                }
+            }
+        }
+
+        function revealAllMines() {
+            mines.forEach(mine => {
+                const [row, col] = mine.split('-');
+                const cell = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
+                cell.classList.add('mine');
+            });
+        }
+
+        function checkWin() {
+            let unrevealedCount = 0;
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                for (let j = 0; j < BOARD_SIZE; j++) {
+                    if (!board[i][j].revealed && !board[i][j].isMine) {
+                        unrevealedCount++;
+                    }
+                }
+            }
+            if (unrevealedCount === 0) {
+                alert('恭喜你，你赢了！');
+            }
+        }
+
+        initBoard();
+    </script>
+</body>
+</html>
