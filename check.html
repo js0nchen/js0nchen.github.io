@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>银行卡和身份证验证</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .error {
+            color: #dc3545;
+        }
+        .success {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>银行卡和身份证验证</h1>
+
+        <!-- 银行卡验证 -->
+        <label for="bank-card">银行卡号：</label>
+        <input type="text" id="bank-card" placeholder="请输入银行卡号">
+        <button onclick="validateBankCard()">验证银行卡号</button>
+        <div id="bank-card-result" class="result"></div>
+
+        <!-- 身份证验证 -->
+        <label for="id-card">身份证号：</label>
+        <input type="text" id="id-card" placeholder="请输入身份证号">
+        <button onclick="validateIdCard()">验证身份证号</button>
+        <div id="id-card-result" class="result"></div>
+    </div>
+
+    <script>
+        // 银行卡号验证规则（Luhn算法）
+        function validateBankCard() {
+            const cardNumber = document.getElementById('bank-card').value.trim();
+            const resultElement = document.getElementById('bank-card-result');
+
+            if (!cardNumber || !/^\d+$/.test(cardNumber)) {
+                resultElement.innerHTML = '<span class="error">请输入有效的银行卡号！</span>';
+                return;
+            }
+
+            // Luhn算法验证
+            let sum = 0;
+            for (let i = 0; i < cardNumber.length; i++) {
+                let digit = parseInt(cardNumber.charAt(i), 10);
+                if ((cardNumber.length - i) % 2 === 0) {
+                    digit *= 2;
+                    if (digit > 9) digit -= 9;
+                }
+                sum += digit;
+            }
+
+            if (sum % 10 === 0) {
+                resultElement.innerHTML = '<span class="success">银行卡号有效！</span>';
+            } else {
+                resultElement.innerHTML = '<span class="error">银行卡号无效！</span>';
+            }
+        }
+
+        // 身份证号验证规则
+        function validateIdCard() {
+            const idNumber = document.getElementById('id-card').value.trim();
+            const resultElement = document.getElementById('id-card-result');
+
+            if (!idNumber || !/^\d{17}[\dXx]$/.test(idNumber)) {
+                resultElement.innerHTML = '<span class="error">请输入有效的身份证号！</span>';
+                return;
+            }
+
+            // 校验码计算
+            const weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+            const checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+            let sum = 0;
+
+            for (let i = 0; i < 17; i++) {
+                sum += parseInt(idNumber.charAt(i), 10) * weights[i];
+            }
+
+            const checkCode = checkCodes[sum % 11];
+            const lastChar = idNumber.charAt(17).toUpperCase();
+
+            if (checkCode === lastChar) {
+                resultElement.innerHTML = '<span class="success">身份证号有效！</span>';
+            } else {
+                resultElement.innerHTML = '<span class="error">身份证号无效！</span>';
+            }
+        }
+    </script>
+</body>
+</html>
