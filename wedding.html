@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚礼邀请</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ffcccb;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #b22222;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .countdown {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .message-form {
+            margin: 20px 0;
+        }
+        .message-form textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .message-form button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #b22222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message-form button:hover {
+            background-color: #8b0000;
+        }
+        .messages {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .messages h2 {
+            font-size: 2em;
+            color: #b22222;
+        }
+        .messages ul {
+            list-style: none;
+            padding: 0;
+        }
+        .messages li {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我们结婚啦！</h1>
+        <p>诚挚邀请您参加我们的婚礼</p>
+    </header>
+    <div class="container">
+        <!-- 婚礼信息 -->
+        <section>
+            <h2>婚礼信息</h2>
+			<p>XX和XX</p>
+            <p>日期：2025年5月20日</p>
+            <p>时间：下午3:00</p>
+            <p>地点：XX大酒店，XXXXXXXXXXXXXXXX</p>
+        </section>
+
+        <!-- 倒计时 -->
+        <section class="countdown">
+            <h2>距离婚礼还有</h2>
+            <div id="countdown-timer"></div>
+        </section>
+
+        <!-- 照片展示 -->
+        <section class="gallery">
+            <h2>我们的幸福瞬间</h2>
+            <div>
+                <img src="https://via.placeholder.com/150" alt="照片1">
+                <img src="https://via.placeholder.com/150" alt="照片2">
+                <img src="https://via.placeholder.com/150" alt="照片3">
+                <img src="https://via.placeholder.com/150" alt="照片4">
+            </div>
+        </section>
+
+        <!-- 祝福留言 -->
+        <section class="message-form">
+            <h2>留下您的祝福</h2>
+            <textarea id="message-input" placeholder="写下您的祝福..."></textarea>
+            <button onclick="addMessage()">提交祝福</button>
+        </section>
+
+        <!-- 留言展示 -->
+        <section class="messages">
+            <h2>祝福留言</h2>
+            <ul id="message-list"></ul>
+        </section>
+    </div>
+
+    <script>
+        // 倒计时功能
+        const weddingDate = new Date('2025-05-20T15:00:00').getTime();
+        const timer = document.getElementById('countdown-timer');
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            timer.innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 祝福留言功能
+        function addMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            if (message) {
+                const messageList = document.getElementById('message-list');
+                const li = document.createElement('li');
+                li.textContent = message;
+                messageList.appendChild(li);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
