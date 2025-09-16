@@ -7,8 +7,7 @@
 ---
 
 ## 目录
-- [规则验证1](https://js0nchen.github.io/tools.html)
-- [规则验证2](https://js0nchen.github.io/check.html)
+- [规则验证](https://js0nchen.github.io/check.html)
 
 ---
 
