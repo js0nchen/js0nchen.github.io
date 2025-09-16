@@ -3,140 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>银行卡和身份证验证</title>
+    <title>证件验证工具</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            text-align: center;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
         .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .description {
+            color: #7f8c8d;
+            font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            font-size: 2em;
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            color: #3498db;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            font-size: 1.5rem;
+        }
+        
+        .input-group {
             margin-bottom: 20px;
         }
+        
         label {
             display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
         }
+        
         input {
             width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
+        
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
         button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #007bff;
-            color: #fff;
+            background: #3498db;
+            color: white;
             border: none;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            transition: background 0.3s;
         }
+        
         button:hover {
-            background-color: #0056b3;
+            background: #2980b9;
         }
+        
         .result {
             margin-top: 20px;
-            font-size: 1.2em;
-            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
         }
-        .error {
-            color: #dc3545;
+        
+        .valid {
+            background: #e8f6ef;
+            color: #27ae60;
+            border: 1px solid #a3e4d7;
         }
-        .success {
-            color: #28a745;
+        
+        .invalid {
+            background: #fde9e9;
+            color: #e74c3c;
+            border: 1px solid #f5b7b1;
+        }
+        
+        .info {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .info-content {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>银行卡和身份证验证</h1>
-
-        <!-- 银行卡验证 -->
-        <label for="bank-card">银行卡号：</label>
-        <input type="text" id="bank-card" placeholder="请输入银行卡号">
-        <button onclick="validateBankCard()">验证银行卡号</button>
-        <div id="bank-card-result" class="result"></div>
-
-        <!-- 身份证验证 -->
-        <label for="id-card">身份证号：</label>
-        <input type="text" id="id-card" placeholder="请输入身份证号">
-        <button onclick="validateIdCard()">验证身份证号</button>
-        <div id="id-card-result" class="result"></div>
+        <header>
+            <h1>证件验证工具</h1>
+            <p class="description">验证中国大陆身份证号码和银行卡号的合法性</p>
+        </header>
+        
+        <div class="cards-container">
+            <div class="card">
+                <h2 class="card-title">身份证验证</h2>
+                <div class="input-group">
+                    <label for="id-card">身份证号码</label>
+                    <input type="text" id="id-card" placeholder="请输入18位身份证号码" maxlength="18">
+                </div>
+                <button id="verify-id">验证身份证</button>
+                <div class="result" id="id-result"></div>
+                
+                <div class="info">
+                    <div class="info-title">身份证规则说明</div>
+                    <div class="info-content">
+                        <p>• 由18位数字组成，最后一位可能是X</p>
+                        <p>• 前6位为地址码</p>
+                        <p>• 中间8位为出生日期码</p>
+                        <p>• 后3位为顺序码，最后1位为校验码</p>
+                        <p>• 验证不检查身份证是否真实存在</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title">银行卡验证</h2>
+                <div class="input-group">
+                    <label for="bank-card">银行卡号</label>
+                    <input type="text" id="bank-card" placeholder="请输入银行卡号">
+                </div>
+                <button id="verify-bank">验证银行卡</button>
+                <div class="result" id="bank-result"></div>
+                
+                <div class="info">
+                    <div class="info-title">银行卡规则说明</div>
+                    <div class="info-content">
+                        <p>• 通常由16-19位数字组成</p>
+                        <p>• 使用Luhn算法进行校验</p>
+                        <p>• 前6位是发卡行标识代码</p>
+                        <p>• 验证不检查银行卡是否真实存在</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // 银行卡号验证规则（Luhn算法）
-        function validateBankCard() {
-            const cardNumber = document.getElementById('bank-card').value.trim();
-            const resultElement = document.getElementById('bank-card-result');
-
-            if (!cardNumber || !/^\d+$/.test(cardNumber)) {
-                resultElement.innerHTML = '<span class="error">请输入有效的银行卡号！</span>';
-                return;
-            }
-
-            // Luhn算法验证
-            let sum = 0;
-            for (let i = 0; i < cardNumber.length; i++) {
-                let digit = parseInt(cardNumber.charAt(i), 10);
-                if ((cardNumber.length - i) % 2 === 0) {
-                    digit *= 2;
-                    if (digit > 9) digit -= 9;
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const idCardInput = document.getElementById('id-card');
+            const bankCardInput = document.getElementById('bank-card');
+            const verifyIdBtn = document.getElementById('verify-id');
+            const verifyBankBtn = document.getElementById('verify-bank');
+            const idResult = document.getElementById('id-result');
+            const bankResult = document.getElementById('bank-result');
+            
+            // 身份证验证函数
+            function validateIdCard(idCard) {
+                // 基本格式校验
+                const reg = /^\d{17}[\dXx]$/;
+                if (!reg.test(idCard)) {
+                    return { isValid: false, message: '身份证格式错误：必须是18位，前17位为数字，最后一位是数字或X' };
                 }
-                sum += digit;
+                
+                // 校验码验证
+                const factors = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+                const checksum = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+                let sum = 0;
+                
+                for (let i = 0; i < 17; i++) {
+                    sum += parseInt(idCard.charAt(i)) * factors[i];
+                }
+                
+                const mod = sum % 11;
+                if (idCard.charAt(17).toUpperCase() !== checksum[mod]) {
+                    return { isValid: false, message: '身份证校验码错误' };
+                }
+                
+                // 出生日期验证
+                const year = parseInt(idCard.substr(6, 4));
+                const month = parseInt(idCard.substr(10, 2));
+                const day = parseInt(idCard.substr(12, 2));
+                
+                const currentYear = new Date().getFullYear();
+                if (year < 1900 || year > currentYear) {
+                    return { isValid: false, message: '身份证出生年份无效' };
+                }
+                
+                if (month < 1 || month > 12) {
+                    return { isValid: false, message: '身份证出生月份无效' };
+                }
+                
+                const daysInMonth = new Date(year, month, 0).getDate();
+                if (day < 1 || day > daysInMonth) {
+                    return { isValid: false, message: '身份证出生日期无效' };
+                }
+                
+                return { isValid: true, message: '身份证号码有效' };
             }
-
-            if (sum % 10 === 0) {
-                resultElement.innerHTML = '<span class="success">银行卡号有效！</span>';
-            } else {
-                resultElement.innerHTML = '<span class="error">银行卡号无效！</span>';
+            
+            // 银行卡验证函数（使用Luhn算法）
+            function validateBankCard(cardNumber) {
+                // 移除所有非数字字符
+                const cleaned = cardNumber.replace(/\D/g, '');
+                
+                // 检查长度
+                if (cleaned.length < 16 || cleaned.length > 19) {
+                    return { isValid: false, message: '银行卡号长度应为16-19位' };
+                }
+                
+                // Luhn算法验证
+                let sum = 0;
+                let isEven = false;
+                
+                for (let i = cleaned.length - 1; i >= 0; i--) {
+                    let digit = parseInt(cleaned.charAt(i));
+                    
+                    if (isEven) {
+                        digit *= 2;
+                        if (digit > 9) {
+                            digit -= 9;
+                        }
+                    }
+                    
+                    sum += digit;
+                    isEven = !isEven;
+                }
+                
+                if (sum % 10 !== 0) {
+                    return { isValid: false, message: '银行卡号校验失败' };
+                }
+                
+                return { isValid: true, message: '银行卡号有效' };
             }
-        }
-
-        // 身份证号验证规则
-        function validateIdCard() {
-            const idNumber = document.getElementById('id-card').value.trim();
-            const resultElement = document.getElementById('id-card-result');
-
-            if (!idNumber || !/^\d{17}[\dXx]$/.test(idNumber)) {
-                resultElement.innerHTML = '<span class="error">请输入有效的身份证号！</span>';
-                return;
-            }
-
-            // 校验码计算
-            const weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
-            const checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
-            let sum = 0;
-
-            for (let i = 0; i < 17; i++) {
-                sum += parseInt(idNumber.charAt(i), 10) * weights[i];
-            }
-
-            const checkCode = checkCodes[sum % 11];
-            const lastChar = idNumber.charAt(17).toUpperCase();
-
-            if (checkCode === lastChar) {
-                resultElement.innerHTML = '<span class="success">身份证号有效！</span>';
-            } else {
-                resultElement.innerHTML = '<span class="error">身份证号无效！</span>';
-            }
-        }
+            
+            // 身份证验证事件
+            verifyIdBtn.addEventListener('click', function() {
+                const idCard = idCardInput.value.trim();
+                
+                if (!idCard) {
+                    idResult.textContent = '请输入身份证号码';
+                    idResult.className = 'result invalid';
+                    idResult.style.display = 'block';
+                    return;
+                }
+                
+                const result = validateIdCard(idCard);
+                
+                idResult.textContent = result.message;
+                idResult.className = result.isValid ? 'result valid' : 'result invalid';
+                idResult.style.display = 'block';
+            });
+            
+            // 银行卡验证事件
+            verifyBankBtn.addEventListener('click', function() {
+                const bankCard = bankCardInput.value.trim();
+                
+                if (!bankCard) {
+                    bankResult.textContent = '请输入银行卡号';
+                    bankResult.className = 'result invalid';
+                    bankResult.style.display = 'block';
+                    return;
+                }
+                
+                const result = validateBankCard(bankCard);
+                
+                bankResult.textContent = result.message;
+                bankResult.className = result.isValid ? 'result valid' : 'result invalid';
+                bankResult.style.display = 'block';
+            });
+            
+            // 实时验证（可选）
+            idCardInput.addEventListener('input', function() {
+                if (idCardInput.value.length === 18) {
+                    verifyIdBtn.click();
+                }
+            });
+            
+            bankCardInput.addEventListener('input', function() {
+                const cleaned = bankCardInput.value.replace(/\D/g, '');
+                if (cleaned.length >= 16 && cleaned.length <= 19) {
+                    verifyBankBtn.click();
+                }
+            });
+        });
     </script>
 </body>
 </html>
