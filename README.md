@@ -8,6 +8,7 @@
 
 ## 目录
 - [规则验证](https://js0nchen.github.io/check.html)
+- [解压小游戏](https://js0nchen.github.io/relax.html)
 
 ---
 
