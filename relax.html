@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解压空间 - 释放压力的小憩站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #4a6fa5;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .activity-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #5a8dee;
+        }
+        
+        .activity-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4a6fa5;
+        }
+        
+        .activity-desc {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: #5a8dee;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #3b71ca;
+        }
+        
+        .game-area {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .game-title {
+            font-size: 2rem;
+            color: #4a6fa5;
+            margin-bottom: 20px;
+        }
+        
+        #bubble-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .bubble {
+            width: 60px;
+            height: 60px;
+            background: #a1c4fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            user-select: none;
+            transition: transform 0.2s ease;
+        }
+        
+        .bubble:hover {
+            transform: scale(1.1);
+        }
+        
+        .bubble.popped {
+            background: #ffb7b7;
+            transform: scale(0.95);
+        }
+        
+        .sound-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .sound-btn {
+            background: #5a8dee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .quote-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #4a6fa5;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .author {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .activities {
+                grid-template-columns: 1fr;
+            }
+            
+            .bubble {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>解压空间</h1>
+            <p class="tagline">释放压力，寻找内心平静的线上小憩站</p>
+        </header>
+        
+        <div class="game-area">
+            <h2 class="game-title">气泡解压游戏</h2>
+            <p>点击气泡享受解压的乐趣！</p>
+            <div id="bubble-wrap">
+                <!-- 气泡将通过JavaScript生成 -->
+            </div>
+            <button id="reset-bubbles" class="btn">重新生成气泡</button>
+        </div>
+        
+        
+        <div class="quote-section">
+            <p class="quote">"有时候，最有效率的事情就是放松一下。"</p>
+            <p class="author">- 佚名</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© XXXX 解压空间 | 用于缓解压力，提升心理健康</p>
+    </footer>
+
+    <script>
+        // 生成气泡
+        function generateBubbles() {
+            const bubbleWrap = document.getElementById('bubble-wrap');
+            bubbleWrap.innerHTML = '';
+            
+            for (let i = 0; i < 40; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.textContent = '🔵';
+                
+                bubble.addEventListener('click', function() {
+                    this.classList.add('popped');
+                    this.textContent = '💥';
+                    
+                    // 播放气泡声音
+                    const popSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-bubble-pop-2331.mp3');
+                    popSound.volume = 0.3;
+                    popSound.play();
+                    
+                    setTimeout(() => {
+                        this.style.visibility = 'hidden';
+                    }, 300);
+                });
+                
+                bubbleWrap.appendChild(bubble);
+            }
+        }
+        
+        // 初始生成气泡
+        generateBubbles();
+        
+        // 重新生成气泡
+        document.getElementById('reset-bubbles').addEventListener('click', generateBubbles);
+        
+        // 声音控制
+        let currentAudio = null;
+        
+        function playSound(soundFile) {
+            // 停止当前播放的声音
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            currentAudio = new Audio(soundFile);
+            currentAudio.loop = true;
+            currentAudio.volume = 0.4;
+            currentAudio.play();
+        }
+        
+        document.getElementById('play-rain').addEventListener('click', () => {
+            playSound('https://assets.mixkit.co/sfx/preview/mixkit-rain-01-98.mp3');
+        });
+        
+        document.getElementById('play-waves').addEventListener('click', () => {
+            playSound('https://assets.mixkit.co/sfx/preview/mixkit-ocean-waves-464.mp3');
+        });
+        
+        document.getElementById('play-birds').addEventListener('click', () => {
+            playSound('https://assets.mixkit.co/sfx/preview/mixkit-forest-birds-1230.mp3');
+        });
+        
+        document.getElementById('stop-sounds').addEventListener('click', () => {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+        });
+        
+        // 每日名言
+        const quotes = [
+            {
+                text: "压力是你认为自己应该是什么样和你现在是什么样之间的差距。",
+                author: "韦恩·戴尔"
+            },
+            {
+                text: "有时候，最重要的事情就是在一天中找到片刻的宁静。",
+                author: "佚名"
+            },
+            {
+                text: "深呼吸是连接身心之间的桥梁。",
+                author: "佚名"
+            },
+            {
+                text: "你不是必须应对所有事情，有时候只需要放松和呼吸。",
+                author: "佚名"
+            }
+        ];
+        
+        // 随机显示一条名言
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.querySelector('.quote').textContent = `"${randomQuote.text}"`;
+        document.querySelector('.author').textContent = `- ${randomQuote.author}`;
+    </script>
+</body>
+</html>
